@@ -14,6 +14,7 @@ export function insertTask (task) {
     const taskDelete = document.createElement('button');
 
     checkbox.type = 'checkbox';
+    checkbox.checked = task.completionStatus;
     taskName.textContent = task.name;
     taskDesc.textContent = task.desc;
     taskPrioOpt1.value = 1;

@@ -3,6 +3,7 @@ import * as taskModule from './task.js';
 import * as domModule from './dom-manipulation.js';
 import { format } from 'date-fns';
 
+const projectManager = [];
 const date = format(new Date(), 'yyyy-MM-dd');
 const myTask = taskModule.createTask('Eat', 'a lot', 5, date, true);
 const myOtherTask = taskModule.createTask('Sleep', 'more', 3, date, false)
@@ -15,6 +16,15 @@ const mTask = taskModule.createTask('m task', 'very long and complicated task th
 const myLastaTask = taskModule.createTask('Lasta task', 'more', 3, date, false)
 
 const myProject = taskModule.createProject('myProject');
+projectManager.push(myProject);
+console.log(projectManager);
+const newTaskBtn = document.getElementById('newTaskBtn');
+const addTaskDialog = document.getElementById('addTaskDialog');
+
+newTaskBtn.addEventListener('click', () => {
+    // show form dialog
+    addTaskDialog.showModal();
+});
 
 taskModule.addTaskToProject(myProject, myTask);
 taskModule.addTaskToProject(myProject, myOtherTask);

@@ -20,10 +20,39 @@
             <ul id="task-list">
             </ul>
             <div class="task-ctrl-buttons">
-                <button>Add new task</button>
-                <button>Clear completed tasks</button>
+                <button id="newTaskBtn">Add new task</button>
+                <button id="clearTasksBtn">Clear completed tasks</button>
             </div>
         </section>
+        <footer>
+            more stuff
+        </footer>
     </div>
+    <dialog id="addTaskDialog">
+        <form>
+            <div>
+                <label for="name">Task Name</label>
+                <input type="text" name="name" id="name">
+                <label for="desc">Task Description</label>
+                <input type="text" name="desc" id="desc">
+            </div>
+            <div>
+                <label for="priority">Priority</label>
+                <select name="priority" id="priority">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <label for="due-date">Due Date</label>
+                <input type="date" name="due-date" id="due-date">
+            </div>
+            <div>
+                <input type="checkbox" name="completion" id="completion">
+                <label for="completion">Complete?</label>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>
