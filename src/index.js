@@ -1,8 +1,9 @@
 import './style.css';
 import * as taskModule from './task.js';
+import * as domModule from './dom-manipulation.js';
 import { format } from 'date-fns';
 
-const date = format(new Date(), 'MM/dd/yyyy');
+const date = format(new Date(), 'yyyy-MM-dd');
 const myTask = taskModule.createTask('Eat', 'a lot', 5, date, true);
 const myOtherTask = taskModule.createTask('Sleep', 'more', 3, date, false)
 const myThirdTask = taskModule.createTask('Game', 'more', 3, date, true)
@@ -10,7 +11,7 @@ const myLastTask = taskModule.createTask('Last task', 'more', 3, date, false)
 const myLasTask = taskModule.createTask('Las task', 'more', 3, date, false)
 const myLaTask = taskModule.createTask('La task', 'more', 3, date, true)
 const myLTask = taskModule.createTask('L task', 'more', 3, date, false)
-const mTask = taskModule.createTask('m task', 'more', 3, date, true)
+const mTask = taskModule.createTask('m task', 'very long and complicated task that is very unlikely to be input by anyone but i need to check anyway smile', 3, date, true)
 const myLastaTask = taskModule.createTask('Lasta task', 'more', 3, date, false)
 
 const myProject = taskModule.createProject('myProject');
@@ -25,8 +26,12 @@ taskModule.addTaskToProject(myProject, myLTask);
 taskModule.addTaskToProject(myProject, mTask);
 taskModule.addTaskToProject(myProject, myLastaTask);
 taskModule.updateTaskPriority(myTask, 4);
-taskModule.updateTaskCompleted(myLastTask, true);
+taskModule.updateTaskCompletionStatus(myLastTask, true);
 taskModule.deleteTask(myProject, myThirdTask);
 taskModule.clearCompletedTasks(myProject);
+
+domModule.insertTask(mTask);
+domModule.insertTask(myLastTask);
+domModule.insertTask(myLTask);
 
 console.log(myProject);

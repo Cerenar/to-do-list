@@ -10,7 +10,7 @@ export function createTask (name, desc, priority, dueDate, completionStatus) {
     this.desc = desc;
     this.priority = priority;
     this.dueDate = dueDate;
-    this.completed = completionStatus;
+    this.completionStatus = completionStatus;
     return { name, desc, priority, dueDate, completionStatus };
 }
 
@@ -39,7 +39,7 @@ export function updateTaskDueDate (task, newDueDate) {
     return task;
 }
 
-export function updateTaskCompleted (task, newCompletionStatus) {
+export function updateTaskCompletionStatus (task, newCompletionStatus) {
     task.completionStatus = newCompletionStatus;
     return task;
 }

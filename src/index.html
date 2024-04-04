@@ -6,9 +6,24 @@
     <title>Stuff Tracker</title>
 </head>
 <body>
-    <header>stuff</header>
-    <section class="content">
-        <ul></ul>
-    </section>
+    <div class="container">
+        <header>stuff</header>
+        <section class="sidebar">
+            <ul>
+                <li>All Projects</li>
+                <li>High Priority</li>
+                <li>Due This Week</li>
+            </ul>
+        </section>
+        <section id="content">
+            <h2>Current Project</h2>
+            <ul id="task-list">
+            </ul>
+            <div class="task-ctrl-buttons">
+                <button>Add new task</button>
+                <button>Clear completed tasks</button>
+            </div>
+        </section>
+    </div>
 </body>
 </html>
