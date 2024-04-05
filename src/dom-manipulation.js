@@ -2,7 +2,7 @@ export function insertTask (task) {
     const taskList = document.getElementById('task-list');
     const listItem = document.createElement('li');
     const checkbox = document.createElement('input');
-    const taskName = document.createElement('p');
+    const taskName = document.createElement('h4');
     const taskDesc = document.createElement('p');
     const taskPrio = document.createElement('select');
     const taskPrioOpt1 = document.createElement('option');

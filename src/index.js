@@ -4,6 +4,11 @@ import * as domModule from './dom-manipulation.js';
 import { format } from 'date-fns';
 
 const projectManager = [];
+const taskTitle = document.getElementById('name');
+const taskDesc = document.getElementById('desc');
+const taskPrio = document.getElementById('priority');
+const taskDueDate = document.getElementById('due-date');
+const taskCompletionStatus = document.getElementById('completion');
 const date = format(new Date(), 'yyyy-MM-dd');
 const myTask = taskModule.createTask('Eat', 'a lot', 5, date, true);
 const myOtherTask = taskModule.createTask('Sleep', 'more', 3, date, false)
@@ -20,11 +25,21 @@ projectManager.push(myProject);
 console.log(projectManager);
 const newTaskBtn = document.getElementById('newTaskBtn');
 const addTaskDialog = document.getElementById('addTaskDialog');
+const addTaskConfirmBtn = document.getElementById('taskConfirmBtn');
+const addTaskCancelBtn = document.getElementById('taskCancelBtn');
 
 newTaskBtn.addEventListener('click', () => {
     // show form dialog
     addTaskDialog.showModal();
 });
+
+addTaskConfirmBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    let temp = taskModule.createTask(taskTitle.value, taskDesc.value, parseInt(taskPrio.value), taskDueDate.value, taskCompletionStatus.checked);
+    taskModule.addTaskToProject(myProject, temp);
+    domModule.insertTask(temp);
+    addTaskDialog.close();
+})
 
 taskModule.addTaskToProject(myProject, myTask);
 taskModule.addTaskToProject(myProject, myOtherTask);
