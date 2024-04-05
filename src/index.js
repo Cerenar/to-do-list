@@ -18,18 +18,24 @@ const mTask = taskModule.createTask('m task', 'very long and complicated task th
 const myProject = taskModule.createProject('myProject');
 projectManager.push(myProject);
 console.log(projectManager);
+const content = document.getElementById('content');
 const addTaskDialog = document.getElementById('add-task-dialog');
 const addTaskConfirmBtn = document.getElementById('task-confirm-btn');
 const newProjectBtn = document.getElementById('new-project-btn');
 const addProjectDialog = document.getElementById('add-project-dialog');
 const addProjectConfirmBtn = document.getElementById('project-confirm-btn');
 
+let projectSwitch = 0;
+
+
 addTaskConfirmBtn.addEventListener('click', (e) => {
+    let taskList = content.children[projectSwitch].children[1];
+    
     e.preventDefault();
     let temp = taskModule.createTask(taskTitle.value, taskDesc.value, parseInt(taskPrio.value), taskDueDate.value, taskCompletionStatus.checked);
-    taskModule.addTaskToProject(myProject, temp);
-    domModule.insertTask(temp);
-    console.log(e.target.value);
+    taskModule.addTaskToProject(projectManager[projectSwitch], temp);
+    domModule.insertTask(taskList, temp);
+    console.log(projectSwitch);
     addTaskDialog.close();
 });
 
@@ -44,6 +50,12 @@ addProjectConfirmBtn.addEventListener('click', (e) => {
     domModule.insertProject(temp);
     console.log(projectManager);
     addProjectDialog.close();
+    for (let i = 0; i < content.childElementCount; i++) {
+        content.children[i].lastChild.lastChild.previousSibling.addEventListener('click', () => {
+            addTaskDialog.showModal();
+            projectSwitch = i;
+        });
+    };
 });
 
 
@@ -52,9 +64,16 @@ taskModule.addTaskToProject(myProject, myLTask);
 taskModule.addTaskToProject(myProject, mTask);
 taskModule.updateTaskCompletionStatus(myLastTask, true);
 
-domModule.insertTask(mTask);
-domModule.insertTask(myLastTask);
-domModule.insertTask(myLTask);
+// domModule.insertTask(0, mTask);
+// domModule.insertTask(0, myLastTask);
+// domModule.insertTask(0, myLTask);
 domModule.insertProject(myProject);
 
 console.log(myProject);
+
+for (let i = 0; i < content.childElementCount; i++) {
+    content.children[i].lastChild.lastChild.previousSibling.addEventListener('click', () => {
+        addTaskDialog.showModal();
+        projectSwitch = i;
+    });
+};

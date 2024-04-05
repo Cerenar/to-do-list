@@ -1,5 +1,5 @@
-export function insertTask (task) {
-   // const taskList = document.getElementById('task-list');
+export function insertTask (taskList, task) {
+    const taskHolder = taskList;
     const listItem = document.createElement('li');
     const checkbox = document.createElement('input');
     const taskName = document.createElement('h4');
@@ -26,7 +26,7 @@ export function insertTask (task) {
     listItem.appendChild(taskPrio);
     listItem.appendChild(taskDueDate);
     listItem.appendChild(taskDelete);
-    //taskList.appendChild(listItem);
+    taskHolder.appendChild(listItem);
 }
 
 export function insertProject (project) {
@@ -47,12 +47,6 @@ export function insertProject (project) {
     contentProjName.textContent = project.name;
     newTaskBtn.textContent = 'Add new task';
     clearTasksBtn.textContent = 'Clear completed tasks';
-
-    newTaskBtn.addEventListener('click', (e) => {
-        // show form dialog
-        addTaskDialog.showModal();
-        console.log(e.target.parentElement.previousSibling.getAttribute('data-task-list'));
-    });
 
     taskList.setAttribute(`data-task-list`, `${content.children.length}`);
 
