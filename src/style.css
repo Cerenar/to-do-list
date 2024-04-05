@@ -40,14 +40,34 @@ header {
 #content li {
     background: darkcyan;
     display: flex;
-    gap: 8px;
+    gap: 16px;
     color: white;
     margin-bottom: 10px;
     font-size: 1.2rem;
     border-radius: 4px;
-    padding: 8px;
+    padding: 8px 24px;
     align-items: center;
     cursor: pointer;
+}
+
+.prio-1 {
+    border-left: 10px groove rgb(112, 255, 255);
+}
+
+.prio-2 {
+    border-left: 10px groove rgb(93, 255, 93);
+}
+
+.prio-3 {
+    border-left: 10px groove yellow;
+}
+
+.prio-4 {
+    border-left: 10px groove rgb(255, 121, 11);
+}
+
+.prio-5 {
+    border-left: 10px groove red;
 }
 
 #content li :nth-child(2) {
@@ -56,7 +76,6 @@ header {
 
 #content li :nth-child(3) {
     flex: 1;
-    text-wrap: wrap;
 }
 
 .task-ctrl-buttons {

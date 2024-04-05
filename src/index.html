@@ -14,21 +14,17 @@
                 <li>High Priority</li>
                 <li>Due This Week</li>
             </ul>
+            <ul id="project-list">
+            </ul>
+            <button id="new-project-btn">New Project</button>
         </section>
         <section id="content">
-            <h2>Current Project</h2>
-            <ul id="task-list">
-            </ul>
-            <div class="task-ctrl-buttons">
-                <button id="newTaskBtn">Add new task</button>
-                <button id="clearTasksBtn">Clear completed tasks</button>
-            </div>
         </section>
         <footer>
             more stuff
         </footer>
     </div>
-    <dialog id="addTaskDialog">
+    <dialog id="add-task-dialog">
         <form>
             <div>
                 <label for="name">Task Name</label>
@@ -53,8 +49,18 @@
                 <label for="completion">Complete?</label>
             </div>
             <div>
-                <button id="taskConfirmBtn">Confirm</button>
-                <button id="taskCancelBtn">Cancel</button>
+                <button id="task-confirm-btn">Confirm</button>
+                <button value="cancel" formmethod="dialog" formnovalidate>Cancel</button>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="add-project-dialog">
+        <form>
+            <label for="project-name">Project Name</label>
+            <input type="text" name="project-name" id="project-name">
+            <div>
+                <button id="project-confirm-btn">Confirm</button>
+                <button value="cancel" formmethod="dialog" formnovalidate>Cancel</button>
             </div>
         </form>
     </dialog>

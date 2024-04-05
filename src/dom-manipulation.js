@@ -1,60 +1,24 @@
 export function insertTask (task) {
-    const taskList = document.getElementById('task-list');
+   // const taskList = document.getElementById('task-list');
     const listItem = document.createElement('li');
     const checkbox = document.createElement('input');
     const taskName = document.createElement('h4');
     const taskDesc = document.createElement('p');
-    const taskPrio = document.createElement('select');
-    const taskPrioOpt1 = document.createElement('option');
-    const taskPrioOpt2 = document.createElement('option');
-    const taskPrioOpt3 = document.createElement('option');
-    const taskPrioOpt4 = document.createElement('option');
-    const taskPrioOpt5 = document.createElement('option');
-    const taskDueDate = document.createElement('input');
+    const taskPrio = document.createElement('p');
+    const taskDueDate = document.createElement('p');
     const taskDelete = document.createElement('button');
 
     checkbox.type = 'checkbox';
     checkbox.checked = task.completionStatus;
     taskName.textContent = task.name;
     taskDesc.textContent = task.desc;
-    taskPrioOpt1.value = 1;
-    taskPrioOpt1.innerText = 1;
-    taskPrioOpt2.value = 2;
-    taskPrioOpt2.innerText = 2;
-    taskPrioOpt3.value = 3;
-    taskPrioOpt3.innerText = 3;
-    taskPrioOpt4.value = 4;
-    taskPrioOpt4.innerText = 4;
-    taskPrioOpt5.value = 5;
-    taskPrioOpt5.innerText = 5;
-    switch(task.priority) {
-        case 1:
-            taskPrioOpt1.selected = 'selected';
-            break;
-        case 2:
-            taskPrioOpt2.selected = 'selected';
-            break;
-        case 3:
-            taskPrioOpt3.selected = 'selected';
-            break;
-        case 4:
-            taskPrioOpt4.selected = 'selected';
-            break;
-        case 5:
-            taskPrioOpt5.selected = 'selected';
-            break;
-        default:
-            taskPrioOpt5.selected = 'selected';
-    }
-    taskPrio.appendChild(taskPrioOpt1);
-    taskPrio.appendChild(taskPrioOpt2);
-    taskPrio.appendChild(taskPrioOpt3);
-    taskPrio.appendChild(taskPrioOpt4);
-    taskPrio.appendChild(taskPrioOpt5);
-    taskDueDate.type = 'date';
+    taskDueDate.textContent = task.dueDate;
     taskDueDate.value = task.dueDate;
     taskDelete.textContent = 'Delete';
 
+    for (let i = 1; i <= 5; i++) {
+        if (task.priority === i) listItem.classList.add(`prio-${i}`);
+    }
 
     listItem.appendChild(checkbox);
     listItem.appendChild(taskName);
@@ -62,5 +26,43 @@ export function insertTask (task) {
     listItem.appendChild(taskPrio);
     listItem.appendChild(taskDueDate);
     listItem.appendChild(taskDelete);
-    taskList.appendChild(listItem);
+    //taskList.appendChild(listItem);
+}
+
+export function insertProject (project) {
+    const projectList = document.getElementById('project-list');
+    const listItem = document.createElement('li');
+    const projName = document.createElement('button');
+
+    const content = document.getElementById('content');
+    const contentProjWrapper = document.createElement('div');
+    const contentProjName = document.createElement('h2');
+    const taskList = document.createElement('ul');
+    const buttonsWrapper = document.createElement('div');
+    const newTaskBtn = document.createElement('button');
+    const clearTasksBtn = document.createElement('button');
+    const addTaskDialog = document.getElementById('add-task-dialog');
+
+    projName.textContent = project.name;
+    contentProjName.textContent = project.name;
+    newTaskBtn.textContent = 'Add new task';
+    clearTasksBtn.textContent = 'Clear completed tasks';
+
+    newTaskBtn.addEventListener('click', (e) => {
+        // show form dialog
+        addTaskDialog.showModal();
+        console.log(e.target.parentElement.previousSibling.getAttribute('data-task-list'));
+    });
+
+    taskList.setAttribute(`data-task-list`, `${content.children.length}`);
+
+    listItem.appendChild(projName);
+    projectList.appendChild(listItem);
+
+    buttonsWrapper.appendChild(newTaskBtn);
+    buttonsWrapper.appendChild(clearTasksBtn);
+    contentProjWrapper.appendChild(contentProjName);
+    contentProjWrapper.appendChild(taskList);
+    contentProjWrapper.appendChild(buttonsWrapper);
+    content.appendChild(contentProjWrapper);
 }
