@@ -19,6 +19,7 @@ const myProject = taskModule.createProject('myProject');
 projectManager.push(myProject);
 console.log(projectManager);
 const content = document.getElementById('content');
+const projectList = document.getElementById('project-list')
 const addTaskDialog = document.getElementById('add-task-dialog');
 const addTaskConfirmBtn = document.getElementById('task-confirm-btn');
 const newProjectBtn = document.getElementById('new-project-btn');
@@ -26,7 +27,6 @@ const addProjectDialog = document.getElementById('add-project-dialog');
 const addProjectConfirmBtn = document.getElementById('project-confirm-btn');
 
 let projectSwitch = 0;
-
 
 addTaskConfirmBtn.addEventListener('click', (e) => {
     let taskList = content.children[projectSwitch].children[1];
@@ -64,10 +64,10 @@ taskModule.addTaskToProject(myProject, myLTask);
 taskModule.addTaskToProject(myProject, mTask);
 taskModule.updateTaskCompletionStatus(myLastTask, true);
 
-// domModule.insertTask(0, mTask);
-// domModule.insertTask(0, myLastTask);
-// domModule.insertTask(0, myLTask);
 domModule.insertProject(myProject);
+domModule.insertTask(content.children[projectSwitch].children[1], mTask);
+domModule.insertTask(content.children[projectSwitch].children[1], myLastTask);
+domModule.insertTask(content.children[projectSwitch].children[1], myLTask);
 
 console.log(myProject);
 

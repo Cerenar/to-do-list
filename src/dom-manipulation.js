@@ -41,14 +41,14 @@ export function insertProject (project) {
     const buttonsWrapper = document.createElement('div');
     const newTaskBtn = document.createElement('button');
     const clearTasksBtn = document.createElement('button');
-    const addTaskDialog = document.getElementById('add-task-dialog');
 
     projName.textContent = project.name;
     contentProjName.textContent = project.name;
     newTaskBtn.textContent = 'Add new task';
     clearTasksBtn.textContent = 'Clear completed tasks';
 
-    taskList.setAttribute(`data-task-list`, `${content.children.length}`);
+    taskList.setAttribute('data-task-list', `${content.children.length}`);
+    projName.setAttribute('data-proj-list', `${projectList.children.length}`);
 
     listItem.appendChild(projName);
     projectList.appendChild(listItem);
@@ -60,3 +60,10 @@ export function insertProject (project) {
     contentProjWrapper.appendChild(buttonsWrapper);
     content.appendChild(contentProjWrapper);
 }
+
+// export function viewChange (node) {
+//     const parentNode = document.querySelectorAll(node);
+//     while (parentNode. !== null) {
+        
+//     }
+// }
