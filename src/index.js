@@ -28,6 +28,22 @@ const addProjectConfirmBtn = document.getElementById('project-confirm-btn');
 
 let projectSwitch = 0;
 
+function deleteButtons () {
+    for (let i = 0; i < content.children.length; i++) {
+        for (let j = 0; j < content.children[i].children[1].children.length; j++) {
+            content.children[i].children[1].children[j].lastChild.removeEventListener('click', Event);
+            content.children[i].children[1].children[j].lastChild.addEventListener('click', (e) => {
+                // console.log(e.target.parentNode.parentNode.getAttribute('data-task-list'));
+                if (e.target.parentNode.parentNode) {
+                    taskModule.deleteTask(projectManager[parseInt(e.target.parentElement.parentElement.getAttribute('data-task-list'))], projectManager[parseInt(e.target.parentElement.parentElement.getAttribute('data-task-list'))].tasks[j]);
+                }
+                domModule.domDelete(e.target.parentNode);
+                console.log(projectManager);
+            });
+        }
+    }
+}
+
 addTaskConfirmBtn.addEventListener('click', (e) => {
     let taskList = content.children[projectSwitch].children[1];
     
@@ -36,6 +52,7 @@ addTaskConfirmBtn.addEventListener('click', (e) => {
     taskModule.addTaskToProject(projectManager[projectSwitch], temp);
     domModule.insertTask(taskList, temp);
     console.log(projectSwitch);
+    deleteButtons();
     addTaskDialog.close();
 });
 
@@ -65,9 +82,9 @@ taskModule.addTaskToProject(myProject, mTask);
 taskModule.updateTaskCompletionStatus(myLastTask, true);
 
 domModule.insertProject(myProject);
-domModule.insertTask(content.children[projectSwitch].children[1], mTask);
 domModule.insertTask(content.children[projectSwitch].children[1], myLastTask);
 domModule.insertTask(content.children[projectSwitch].children[1], myLTask);
+domModule.insertTask(content.children[projectSwitch].children[1], mTask);
 
 console.log(myProject);
 
@@ -77,3 +94,16 @@ for (let i = 0; i < content.childElementCount; i++) {
         projectSwitch = i;
     });
 };
+
+
+for (let i = 0; i < content.children.length; i++) {
+    for (let j = 0; j < content.children[i].children[1].children.length; j++) {
+        content.children[i].children[1].children[j].lastChild.addEventListener('click', (e) => {
+            // console.log(e.target.parentNode.parentNode.getAttribute('data-task-list'));
+            if (e.target.parentNode.parentNode) {
+                taskModule.deleteTask(projectManager[parseInt(e.target.parentElement.parentElement.getAttribute('data-task-list'))], projectManager[parseInt(e.target.parentElement.parentElement.getAttribute('data-task-list'))].tasks[j]);
+            }
+            domModule.domDelete(e.target.parentNode);
+        });
+    }
+}

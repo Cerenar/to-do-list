@@ -4,7 +4,6 @@ export function insertTask (taskList, task) {
     const checkbox = document.createElement('input');
     const taskName = document.createElement('h4');
     const taskDesc = document.createElement('p');
-    const taskPrio = document.createElement('p');
     const taskDueDate = document.createElement('p');
     const taskDelete = document.createElement('button');
 
@@ -23,7 +22,6 @@ export function insertTask (taskList, task) {
     listItem.appendChild(checkbox);
     listItem.appendChild(taskName);
     listItem.appendChild(taskDesc);
-    listItem.appendChild(taskPrio);
     listItem.appendChild(taskDueDate);
     listItem.appendChild(taskDelete);
     taskHolder.appendChild(listItem);
@@ -59,6 +57,12 @@ export function insertProject (project) {
     contentProjWrapper.appendChild(taskList);
     contentProjWrapper.appendChild(buttonsWrapper);
     content.appendChild(contentProjWrapper);
+}
+
+export function domDelete (node) {
+    if (node.parentNode) {
+    node.parentNode.removeChild(node);
+    }
 }
 
 // export function viewChange (node) {
